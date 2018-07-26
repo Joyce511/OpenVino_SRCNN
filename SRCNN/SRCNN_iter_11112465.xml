@@ -1,0 +1,129 @@
+<?xml version="1.0" ?>
+<net batch="1" name="SRCNN" version="2">
+	<layers>
+		<layer id="0" name="data" precision="FP32" type="Input">
+			<output>
+				<port id="0">
+					<dim>1</dim>
+					<dim>1</dim>
+					<dim>393</dim>
+					<dim>588</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="1" name="conv1" precision="FP32" type="Convolution">
+			<data dilation-x="1" dilation-y="1" group="1" kernel-x="9" kernel-y="9" output="64" pad-x="0" pad-y="0" stride="1,1,1,1" stride-x="1" stride-y="1"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>1</dim>
+					<dim>393</dim>
+					<dim>588</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>385</dim>
+					<dim>580</dim>
+				</port>
+			</output>
+			<blobs>
+				<weights offset="0" size="20736"/>
+				<biases offset="20736" size="256"/>
+			</blobs>
+		</layer>
+		<layer id="2" name="relu1" precision="FP32" type="ReLU">
+			<data negative_slope="0.0"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>385</dim>
+					<dim>580</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>385</dim>
+					<dim>580</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="3" name="conv2" precision="FP32" type="Convolution">
+			<data dilation-x="1" dilation-y="1" group="1" kernel-x="1" kernel-y="1" output="32" pad-x="0" pad-y="0" stride="1,1,1,1" stride-x="1" stride-y="1"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>385</dim>
+					<dim>580</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>385</dim>
+					<dim>580</dim>
+				</port>
+			</output>
+			<blobs>
+				<weights offset="20992" size="8192"/>
+				<biases offset="29184" size="128"/>
+			</blobs>
+		</layer>
+		<layer id="4" name="relu2" precision="FP32" type="ReLU">
+			<data negative_slope="0.0"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>385</dim>
+					<dim>580</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>385</dim>
+					<dim>580</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="5" name="conv3" precision="FP32" type="Convolution">
+			<data dilation-x="1" dilation-y="1" group="1" kernel-x="5" kernel-y="5" output="1" pad-x="0" pad-y="0" stride="1,1,1,1" stride-x="1" stride-y="1"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>385</dim>
+					<dim>580</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3">
+					<dim>1</dim>
+					<dim>1</dim>
+					<dim>381</dim>
+					<dim>576</dim>
+				</port>
+			</output>
+			<blobs>
+				<weights offset="29312" size="3200"/>
+				<biases offset="32512" size="4"/>
+			</blobs>
+		</layer>
+	</layers>
+	<edges>
+		<edge from-layer="0" from-port="0" to-layer="1" to-port="0"/>
+		<edge from-layer="1" from-port="3" to-layer="2" to-port="0"/>
+		<edge from-layer="2" from-port="1" to-layer="3" to-port="0"/>
+		<edge from-layer="3" from-port="3" to-layer="4" to-port="0"/>
+		<edge from-layer="4" from-port="1" to-layer="5" to-port="0"/>
+	</edges>
+</net>

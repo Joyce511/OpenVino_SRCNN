@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<mapping>
+	<map>
+		<framework name="data" out_port_id="data"/>
+		<IR id="0" name="data" out_port_id="0"/>
+	</map>
+	<map>
+		<framework name="conv1" out_port_id="conv1"/>
+		<IR id="1" name="conv1" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="relu1" out_port_id="conv1"/>
+		<IR id="2" name="relu1" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="conv2" out_port_id="conv2"/>
+		<IR id="3" name="conv2" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="relu2" out_port_id="conv2"/>
+		<IR id="4" name="relu2" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="conv3" out_port_id="conv3"/>
+		<IR id="5" name="conv3" out_port_id="3"/>
+	</map>
+</mapping>
